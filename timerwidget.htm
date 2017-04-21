@@ -1,0 +1,78 @@
+<style>
+body{
+  text-align: center;
+  font-family: sans-serif;
+  font-weight: 100;
+}
+h1{
+  color: #396;
+  font-weight: 100;
+  font-size: 100px;
+  margin: 40px 0px 20px;
+}
+#clockdiv{
+	font-family: sans-serif;
+	color: #004fd1;
+	display: inline-block;
+	font-weight: 100;
+	text-align: center;
+	border-radius: 3px;
+	font-size: 100px;
+text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+#clockdiv > div{
+	padding: 3px;
+	border-radius: 3px;
+	display: inline-block;
+}
+#clockdiv div > span{
+	border-radius: 3px;
+	display: inline-block;
+}
+.msec{
+  top:10px;
+  font-size:60px;
+}
+</style>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<script>
+var url = "https://spreadsheets.google.com/tq?key=11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0&tqx=out:csv";
+//url = "https://docs.google.com/spreadsheets/d/11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0/gviz/tq?tqx=out:json";
+var lastupd = -1;
+function update(){
+$.get(url, function( data ) {
+  var arr = data.split("\",\"");
+  console.log(arr);
+  var val = parseInt(arr[1]);
+  var state = parseInt(arr[3]);
+  console.log(val+" "+state);
+  var dt = 0;
+  if(state === 0)
+  {
+    dt = val;
+  }
+  else
+  {
+    dt = val - (+new Date());
+  }
+  
+  if (dt < 0) dt = 0;
+  var ms = dt % 1000;
+  var ts = (dt - ms) / 1000;
+  var s = ts % 60;
+  var m = (ts - s) / 60;
+  document.getElementById("clockdiv").querySelector('.min').innerHTML = m;
+  document.getElementById("clockdiv").querySelector('.sec').innerHTML = ("0"+s).slice(-2);
+});
+}
+setInterval(update, 500);
+</script>
+
+<div id="clockdiv">
+  <div>
+    <span class="min"></span>
+  </div>:<div>
+    <span class="sec"></span>
+</div>
