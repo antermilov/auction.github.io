@@ -38,8 +38,13 @@ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 <script>
-var request_url = "https://spreadsheets.google.com/tq?key=11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0&tqx=out:html";
-request_url = "https://docs.google.com/spreadsheets/d/11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0/gviz/tq?tqx=out:json";
+	
+google.visualization.Query.setResponse(obj){
+console.log(obj);
+}
+	
+var request_url = "https://spreadsheets.google.com/tq?key=11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0&tqx=out:json";
+//request_url = "https://docs.google.com/spreadsheets/d/11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0/gviz/tq?tqx=out:json";
 var lastupd = -1;
 function update(){
 $.get({url: request_url, dataType: "jsonp",  success: function( data ) {
