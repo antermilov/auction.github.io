@@ -39,11 +39,11 @@ text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 
 <script>
 	
-var google.visualization.Query.setResponse = function (obj){
+function process(obj){
 console.log(obj);
 }
 	
-var request_url = "https://spreadsheets.google.com/tq?key=11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0&tqx=out:json";
+var request_url = "https://spreadsheets.google.com/tq?key=11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0&tqx=out:json&responseHandler:process";
 //request_url = "https://docs.google.com/spreadsheets/d/11_oiiAzSAXz-uotsiZbL0U9UAlMJ5-Wm1FBZF1YdOZ0/gviz/tq?tqx=out:json";
 var lastupd = -1;
 function update(){
